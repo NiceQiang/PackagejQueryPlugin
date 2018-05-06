@@ -5,7 +5,7 @@
     'user strict';
 
     /**
-     * 构造函数
+     * 构造函数 
      */
     var marine = function (element, options) {
         return this.init(element, options);
