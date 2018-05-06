@@ -14,7 +14,10 @@
     /**
      * 指定允许外部调用的函数
      */
-    marine.allowedMethods = ['getDefaults', 'getRace', 'getOptions']
+    marine.allowedMethods = [
+        'getDefaults', 
+        'getRace', 
+        'getOptions']
 
 
     /**
@@ -26,15 +29,17 @@
         'init.end': 'onInitEnd',
     }
 
-
+    /**
+     * 默认设置
+     */
     marine.prototype.defaults = {
         field1: 'this is field1 default',
         field2: 'this is field2 default',
-        onInitBegin: function (name,args) {
+        onInitBegin: function (name, args) {
             console.log('onInitBegin');
             return false;
         },
-        onInitEnd: function (name,args) {
+        onInitEnd: function (name, args) {
             console.log('onInitEnd');
             return false;
         }
@@ -77,16 +82,14 @@
         return this.race;
     }
 
-
+    /**
+     * 事件触发器
+     * @param {*} name 
+     */
     marine.prototype.trigger = function (name) {
         var args = Array.prototype.slice.call(arguments, 1);
         this.options[marine.events[name]].apply(this.options, args);
     };
-
-    marine.prototype.onInitBegin = function () {
-        console.log('marine.prototype.onInitBegin');
-    }
-
 
     function plugin(options) {
         var value;
@@ -119,5 +122,4 @@
     // 以插件的方式加入到jquery中
     $.fn.marine = plugin;
     $.fn.marine.constructor = marine;
-
 }(jQuery)
